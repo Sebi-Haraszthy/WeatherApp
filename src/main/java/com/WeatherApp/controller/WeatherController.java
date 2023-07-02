@@ -1,5 +1,6 @@
 package com.WeatherApp.controller;
 
+import com.WeatherApp.DTO.CurrentWeatherDTO;
 import com.WeatherApp.service.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class WeatherController {
     }
 
     @GetMapping
-    String getCurrentWeather(@RequestParam(value = "city", required = false, defaultValue = "Cluj") String cityName) {
+    public CurrentWeatherDTO getCurrentWeather(@RequestParam(value = "city", required = false, defaultValue = "Cluj") String cityName) {
         try {
             return weatherService.getCurrentWeather(cityName);
         } catch (IOException e) {

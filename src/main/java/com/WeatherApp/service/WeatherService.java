@@ -1,5 +1,6 @@
 package com.WeatherApp.service;
 
+import com.WeatherApp.DTO.CurrentWeatherDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 
 @Service
 public class WeatherService {
@@ -24,13 +26,20 @@ public class WeatherService {
         this.restTemplate = restTemplate;
     }
 
-    public String getCurrentWeather(String cityName) throws JsonProcessingException {
+    public CurrentWeatherDTO getCurrentWeather(String cityName) throws JsonProcessingException {
         URI url = new UriTemplate(CURRENT_WEATHER_URL).expand(cityName, apiKey);
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String weatherBody = response.getBody();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode root = objectMapper.readTree(response.getBody());
+        String description = root.path("weather").get(0).path("description").asText();
+        Double windSpeed = root.path("wind").path("speed").asDouble();
+        Double temperature = root.path("main").path("temp").asDouble();
+        Double feelsLikeTemperature = root.path("main").path("feels_like").asDouble();
+        String city = root.path("name").asText();
+        String countryName = root.path("sys").path("country").asText();
+        CurrentWeatherDTO currentWeatherDTO = new CurrentWeatherDTO(description, temperature, feelsLikeTemperature, windSpeed, cityName, countryName, LocalDateTime.now());
 
-        return "";
+        return currentWeatherDTO;
     }
 }

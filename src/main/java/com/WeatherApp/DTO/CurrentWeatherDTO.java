@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class CurrentWeatherDTO {
     private String description;
-    private Integer temperature;
-    private Integer feelsLikeTemperature;
-    private Integer windSpeed;
+    private Double temperature;
+    private Double feelsLikeTemperature;
+    private Double windSpeed;
     private String cityName;
     private String countryName;
     private LocalDateTime date;
 
-    public CurrentWeatherDTO(String description, Integer temperature, Integer feelsLikeTemperature, Integer windSpeed, String cityName, String countryName, LocalDateTime date) {
+    public CurrentWeatherDTO(String description, Double temperature, Double feelsLikeTemperature, Double windSpeed, String cityName, String countryName, LocalDateTime date) {
         this.description = description;
         this.temperature = temperature;
         this.feelsLikeTemperature = feelsLikeTemperature;
@@ -29,27 +29,27 @@ public class CurrentWeatherDTO {
         this.description = description;
     }
 
-    public Integer getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Integer temperature) {
+    public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
 
-    public Integer getFeelsLikeTemperature() {
+    public Double getFeelsLikeTemperature() {
         return feelsLikeTemperature;
     }
 
-    public void setFeelsLikeTemperature(Integer feelsLikeTemperature) {
+    public void setFeelsLikeTemperature(Double feelsLikeTemperature) {
         this.feelsLikeTemperature = feelsLikeTemperature;
     }
 
-    public Integer getWindSpeed() {
+    public Double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(Integer windSpeed) {
+    public void setWindSpeed(Double windSpeed) {
         this.windSpeed = windSpeed;
     }
 
