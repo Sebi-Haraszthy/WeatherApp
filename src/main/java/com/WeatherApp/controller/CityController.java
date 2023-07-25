@@ -19,8 +19,8 @@ public class CityController {
     }
 
     @PostMapping("/add/{user_id}")
-    public User addFavoriteCity(@RequestBody City city, @PathVariable Long user_id) {
-        return cityService.addFavoriteCity(city, user_id);
+    public User addCity(@RequestBody City city, @PathVariable Long user_id) {
+        return cityService.addCity(city, user_id);
     }
 
     @DeleteMapping("/delete/{user_id}/{city_id}")

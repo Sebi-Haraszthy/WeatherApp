@@ -22,7 +22,7 @@ public class CityService {
         this.userRepository = userRepository;
     }
 
-    public User addFavoriteCity(City city, Long user_id) {
+    public User addCity(City city, Long user_id) {
         User foundUser = userRepository.findById(user_id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
         foundUser.getCityList().add(city);
         city.getUserList().add(foundUser);
